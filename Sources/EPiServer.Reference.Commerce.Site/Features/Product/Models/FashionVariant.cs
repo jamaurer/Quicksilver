@@ -3,6 +3,8 @@ using EPiServer.Commerce.Catalog.ContentTypes;
 using EPiServer.Commerce.Catalog.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
+using EPiServer.Reference.Commerce.Site.Features.Product.Services;
+using EPiServer.Shell.ObjectEditing;
 
 namespace EPiServer.Reference.Commerce.Site.Features.Product.Models
 {
@@ -25,7 +27,16 @@ namespace EPiServer.Reference.Commerce.Site.Features.Product.Models
         [Tokenize]
         [IncludeInDefaultSearch]
         [BackingType(typeof(PropertyString))]
-        [Display(Name = "Color", Order = 2)]
+        [Display(Name = "Color", Order = 3)]
         public virtual string Color { get; set; }
+
+        [Searchable]
+        [CultureSpecific]
+        [Tokenize]
+        [IncludeInDefaultSearch]
+        [BackingType(typeof(PropertyString))]
+        [Display(Name = "Type", Order = 2)]
+        [AutoSuggestSelection(typeof(AvailabilitySelectionQuery))]
+        public virtual string Availability { get; set; }
     }
 }
